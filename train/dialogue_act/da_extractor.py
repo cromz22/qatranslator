@@ -1,7 +1,4 @@
 import MeCab
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import SVC
-from sklearn.preprocessing import LabelEncoder
 import dill
 
 mecab = MeCab.Tagger()
@@ -31,6 +28,6 @@ def extract_da(utt):
     return da
 
 
-for utt in ["大阪の明日の天気", "もう一度はじめから", "東京じゃなくて"]:
+for utt in ["ちくわについて教えて", "もう一度はじめから", "京都じゃなくて", "こんにちは"]:
     da = extract_da(utt)
     print(utt, da)
