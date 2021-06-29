@@ -75,5 +75,5 @@ class DA_Concept:
 
 if __name__ == '__main__':
     da_concept = DA_Concept()
-    da, conceptdic = da_concept.process("東京の天気は？")
+    da, conceptdic = da_concept.process("ちくわについて教えて")
     print(da, conceptdic)
