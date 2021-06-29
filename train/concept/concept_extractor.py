@@ -1,8 +1,5 @@
 import MeCab
-# import json
 import dill
-# import sklearn_crfsuite
-# from crf_util import word2features, sent2features, sent2labels
 from crf_util import sent2features
 import re
 
@@ -59,6 +56,6 @@ def extract_concept(utt):
 
 
 if __name__ == '__main__':
-    for utt in ["大阪の明日の天気", "もう一度はじめから", "東京じゃなくて"]:
+    for utt in ["こんにちは", "もう一度はじめから", "東京じゃなくて", "ちくわについて教えて"]:
         conceptdic = extract_concept(utt)
         print(utt, conceptdic)
