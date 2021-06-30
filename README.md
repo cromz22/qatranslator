@@ -36,13 +36,19 @@
 ## How to use
 
 ### Google translator setup
+
+1. Install toolkits
 ```
 brew install --cask google-cloud-sdk
 pip install google-cloud-translate
 ```
 
+2. Place json API key file at the same directory as `qatranslator.py`
+
+3. Run app
+
 ```
-python frame_weather_system.py
+python qatranslator.py
 ```
 
 Start dialogue by typing `/start`.
