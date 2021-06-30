@@ -1,4 +1,5 @@
 from asr_google_streaming_vad import MicrophoneStream, GoogleStreamingASR
+from tts_google import GoogleTextToSpeech
 
 
 class ConsoleBot:
@@ -24,6 +25,7 @@ class ConsoleBot:
 
     def run(self):
         sys_out = self.start("")
+        tts = GoogleTextToSpeech()
         while True:
             print("YOU:")
             mic_stream = MicrophoneStream(16000, 1600)
@@ -32,6 +34,8 @@ class ConsoleBot:
             input_utt = response.alternatives[0].transcript
             sys_out = self.message(input_utt)
             print("\nSYS: " + sys_out["utt"])
+            tts.generate(sys_out["utt"])
+            tts.play()
 
             if sys_out["end"]:
                 break
