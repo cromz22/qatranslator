@@ -2,6 +2,11 @@
 
 ## How to train
 
+1. Install toolkits
+	```
+	pip install dill
+	```
+
 1. Prepare train/examples.txt, where `da` defines dialogue acts and concepts are highlighted in the XML format
 
 
@@ -35,23 +40,27 @@
 
 ## How to use
 
-### Google translator setup
-
 1. Install toolkits
-```
-brew install --cask google-cloud-sdk
-pip install google-cloud-translate
-```
 
-2. Place json API key file at the same directory as `qatranslator.py`
+	```
+	brew install --cask google-cloud-sdk
+	pip install google-cloud-translate
+	pip install --upgrade google-cloud-speech
+	```
 
-3. Run app
+1. Place json API key file at the same directory as `qatranslator.py`. Also, set the following environment variable:
 
-```
-python qatranslator.py
-```
+	```
+	export GOOGLE_APPLICATION_CREDENTIALS="/path/to/json/file.json"
+	```
 
-Start dialogue by typing `/start`.
+1. Run app
+
+	```
+	python qatranslator.py
+	```
+
+	Start dialogue by typing `/start`.
 
 
 ## Reference

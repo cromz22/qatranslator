@@ -1,3 +1,6 @@
+from asr_google_streaming_vad import MicrophoneStream, GoogleStreamingASR
+
+
 class ConsoleBot:
     def __init__(self, system):
         self.system = system
@@ -20,13 +23,15 @@ class ConsoleBot:
         return system_output
 
     def run(self):
+        sys_out = self.start("")
         while True:
-            input_utt = input("YOU:>")
-            if "/start" in input_utt:
-                sys_out = self.start(input_utt)
-            else:
-                sys_out = self.message(input_utt)
-            print("SYS:" + sys_out["utt"])
+            print("YOU:")
+            mic_stream = MicrophoneStream(16000, 1600)
+            asr_stream = GoogleStreamingASR(16000, mic_stream)
+            response = asr_stream.get_asr_result()
+            input_utt = response.alternatives[0].transcript
+            sys_out = self.message(input_utt)
+            print("\nSYS: " + sys_out["utt"])
 
             if sys_out["end"]:
                 break

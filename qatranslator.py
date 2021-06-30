@@ -95,15 +95,15 @@ class QATranslator:
 
         # 現在のセッションのフレームを取得
         frame = self.sessiondic[sessionId]["frame"]
-        print("frame=", frame)
+        # print("frame=", frame)
 
         # 発話から対話行為タイプとコンセプトを取得
         da, conceptdic = self.da_concept.process(text)
-        print(da, conceptdic)
+        # print(da, conceptdic)
 
         # 対話行為タイプとコンセプトを用いてフレームを更新
         frame = self.update_frame(frame, da, conceptdic)
-        print("updated frame=", frame)
+        # print("updated frame=", frame)
 
         # 更新後のフレームを保存
         self.sessiondic[sessionId] = {"frame": frame}
@@ -114,10 +114,10 @@ class QATranslator:
         # 遷移先がtell-infoの場合は情報を伝えて終了
         if sys_da == "tell-info":
             noun = frame["noun"]
-            print(noun)
-            print(type(noun))
+            print(f"recognized noun: {noun}")
 
             abstract = self.get_abstract_from_wikipedia(noun)
+            print(f"Japanese abstract: {abstract}")
             translated_abstract = self.get_translation_from_google("en", abstract)
 
             del self.sessiondic[sessionId]
