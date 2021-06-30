@@ -35,6 +35,12 @@
 
 ## How to use
 
+### Google translator setup
+```
+brew install --cask google-cloud-sdk
+pip install google-cloud-translate
+```
+
 ```
 python frame_weather_system.py
 ```

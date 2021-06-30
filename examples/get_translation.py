@@ -21,5 +21,6 @@ def translate_text(target, text):
     print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
 
 
-text = '吾輩わがはいは猫である。名前はまだ無い。どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶し ている。'
-translate_text("en", text)
+if __name__ == "__main___":
+    text = "吾輩わがはいは猫である。"
+    translate_text("en", text)

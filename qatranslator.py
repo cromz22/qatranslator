@@ -35,6 +35,26 @@ class QATranslator:
 
         return abstract[0].split("\n")[0]
 
+    def get_translation_from_google(self, target: str, text: str) -> str:
+        """Translates text into the target language.
+
+        Target must be an ISO 639-1 language code.
+        See https://g.co/cloud/translate/v2/translate-reference#supported_languages
+        """
+        import six
+        from google.cloud import translate_v2 as translate
+
+        translate_client = translate.Client()
+
+        if isinstance(text, six.binary_type):
+            text = text.decode("utf-8")
+
+        # Text can also be a sequence of strings, in which case this method
+        # will return a sequence of results for each text.
+        result = translate_client.translate(text, target_language=target)
+
+        return result["translatedText"]
+
     # 発話から得られた情報をもとにフレームを更新
     def update_frame(self, frame, da, conceptdic):
         if da == "ask-question":
@@ -98,7 +118,7 @@ class QATranslator:
             print(type(noun))
 
             abstract = self.get_abstract_from_wikipedia(noun)
-            translated_abstract = abstract  # need fix
+            translated_abstract = self.get_translation_from_google("en", abstract)
 
             del self.sessiondic[sessionId]
             return {"utt": translated_abstract, "end": True}
