@@ -1,6 +1,6 @@
 import MeCab
 import dill
-from train.concept.crf_util import sent2features
+from training.concept.crf_util import sent2features
 import re
 
 
@@ -13,13 +13,13 @@ class DA_Concept:
         self.mecab.parse('')
 
         # SVMモデルの読み込み
-        with open("train/dialogue_act/svc.model", "rb") as f:
+        with open("training/dialogue_act/svc.model", "rb") as f:
             self.vectorizer = dill.load(f)
             self.label_encoder = dill.load(f)
             self.svc = dill.load(f)
 
         # CRFモデルの読み込み
-        with open("train/concept/crf.model", "rb") as f:
+        with open("training/concept/crf.model", "rb") as f:
             self.crf = dill.load(f)
 
     # 発話文から対話行為タイプとコンセプトを抽出
