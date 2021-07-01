@@ -117,8 +117,9 @@ class QATranslator:
             print(f"recognized noun: {noun}")
 
             abstract = self.get_abstract_from_wikipedia(noun)
-            print(f"Japanese abstract: {abstract}")
-            translated_abstract = self.get_translation_from_google("en", abstract)
+            cleaned_abstract = re.sub(r"（[^）]*）", "", abstract)
+            print(f"Japanese abstract: {cleaned_abstract}")
+            translated_abstract = self.get_translation_from_google("en", cleaned_abstract)
 
             del self.sessiondic[sessionId]
             return {"utt": translated_abstract, "end": True}
