@@ -1,6 +1,7 @@
 from da_concept_extractor import DA_Concept
 import requests
 from console_bot import ConsoleBot
+import re
 
 
 class QATranslator:
